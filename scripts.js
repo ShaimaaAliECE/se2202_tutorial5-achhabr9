@@ -3,6 +3,7 @@ let nextPlayer = 'X'; // takes a value of either 'X' or 'O' according to the gam
 //initialize the game
 
 // use the value stored in the nextPlayer variable to indicate who the next player is
+document.getElementById('next-lbl').innerHTML = nextPlayer;
 
 
 //This call will create the buttons needed for the gameboard.
@@ -11,6 +12,14 @@ createGameBoard()
 function createGameBoard()
 {
     // Programatically add a button with square brackets enclosing an empty space to each cell in the gameboard
+
+    for (i = 0; i < 9; i++){
+        let board = 'a' + (i+1);
+
+        let newButton = document.createElement('button');
+        document.getElementById(board).appendChild(newButton);
+        newButton.innerHTML = '{}';
+    }
    
 }
 
@@ -31,9 +40,15 @@ function takeCell(event)
     // Make sure the button is clickable only once (I didn't mention how to do that, look it up :) )
 
     // Check if the game is over
+
+    event.target.innerHTML = nextPlayer;
+    if(nextPlayer == 'X'){
+        nextPlayer = 'O';
+    }
     if (isGameOver())
     {
         // let the lable with the id 'game-over-lbl' display the words 'Game Over' inside <h1> element
+        
     }
 
     // I'll leave declaring the winner for your intrinsic motivation, it's not required for this assignment 
